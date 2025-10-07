@@ -24,7 +24,7 @@
         .btn {
             background-color: #ffba6be7;
             color: #fff;
-            padding: 14px 35px;
+            padding: 14px 30px;
             text-decoration: none;
             border-radius: 50px;
             font-size: 16px;
@@ -34,8 +34,7 @@
         }
 
         .btn:hover {
-            background-color: #47d4ff9d;
-            transform: scale(1.05);
+            opacity: 0.5;
         }
 </style>
 </head>
@@ -44,17 +43,15 @@
 <div class="c1">
 <h2>Admin Panel</h2>
 <p>Manage registrations, track progress, and handle payments — all in one sleek dashboard.
-    Click below to enter the admin panel.</p>
+    Click below to enter the admin panel.</p> 
 <a href="login.php" class="btn">Admin login</a>
-</div> 
-
+    </div>
 <div class="c1">
 <h2>Gym Trainer</h2>
 <p>Train the member's, track member's progress, and create workout class & schedule — all in one sleek dashboard. 
      Click below to enter the trainer panel.</p>
 <a href="login.php" class="btn">Trainer login</a>
-</div>
-
+    </div>
 <div class="c1">
 <h2>Member</h2>
 <p>See assigned class, workout schedule, and status — all in one sleek dashboard.
