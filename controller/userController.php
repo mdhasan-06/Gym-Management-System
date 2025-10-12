@@ -1,5 +1,4 @@
 <?php
-    echo "Inside userController.php <br>";
     require_once("../model/usersdb.php");
 
     function validateUser($name, $pass)

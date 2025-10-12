@@ -2,16 +2,16 @@
     $host= "localhost";
     $user= "root";
     $pass= "";
-    $usersdb = "my_database";
+    $dbName = "my_database";
 
     function getConnection()
     {
         global $host;
         global $user;
         global $pass;
-        global $usersdb;
+        global $dbName;
 
-        $conn= mysqli_connect($host,$user,"",$usersdb);
+        $conn= mysqli_connect($host,$user,"",$dbName);
         return $conn;
     }
 

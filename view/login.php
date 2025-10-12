@@ -61,12 +61,12 @@
         <form action="../controller/login_authen.php" method="post">
             <div class="c2">
                 <label for="userName"><b>User Name</b></label>
-                <input type="text" placeholder="Enter userName" name="userName" autocomplete="off"><br><br>
-                <span style="color:red;" name="nameErr"><?php if(isset($_GET["NameErr"])){echo $_GET["NameErr"]; } ?> </span>
+                <input type="text" placeholder="Enter userName" name="userName" autocomplete="off"><br>
+                <span style="color:red;" name="nameErr"><?php if(isset($_GET["NameErr"])){echo $_GET["NameErr"]; } ?> </span><br>
                 
                 <label for="pass"><b>Password </b></label>
                 <input type="password" placeholder="Enter password" name="pass"><br>
-                <span style="color:red;" name="passErr"><?php if(isset($_GET["passErr"])){echo $_GET["passErr"]; } ?></span>
+                <span style="color:red;" name="passErr"><?php if(isset($_GET["passErr"])){echo $_GET["passErr"]; } ?></span><br>
 
                 <button type="submit" name="submit">Login</button>
                 <span name="invalidUser" style="color:red;"><?php if(isset($_GET["invalidUser"])){echo $_GET["invalidUser"]; } ?></span>

@@ -1,68 +1,103 @@
 <?php
-    $nameErr= $emailErr= $callErr= $addressErr= $ageErr= $genderErr="";
+    if(isset($_GET["success"]) && $_GET["success"] == 1)
+    {
+        echo "<script> 
+              alert('Form submitted successfully!');
+              window.history.replaceState({}, document.title, 'form.php');
+             </script>";
+    }
+
+
+    $nameErr= $emailErr= $callErr= $addressErr= $ageErr= $genderErr= $weightErr= $membertypErr= "";
     $hasErr= false;
-    $name= $email= $call= $address= $age= $gender="";
+    $name= $email= $call= $address= $age= $gender= $weight= $membertyp= "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         if(empty($_POST["name"]))
         {
-            $nameErr= "Name can't be empty";
+            $nameErr= "*Name can't be empty";
             $hasErr= true;
         }
         else
         {
             $name= $_POST["name"];
         }
-        if(!filter_var($_POST["email"],FILTER_VALIDATE_EMAIL))
-        {
-            $emailErr= "Enter validate email";
-            $hasErr= true;
-        }
+        
         if(empty($_POST["email"]))
         {
-            $emailErr= "Email can't be empty";
+            $emailErr= "*Email can't be empty";
             $hasErr= true;
         }
         else
         {
             $email= $_POST["email"];
         }
+
         if(empty($_POST["call"]))
         {
-            $callErr= "Enter your phone number";
+            $callErr= "*Enter your phone number";
             $hasErr= true;
         }
         else
         {
             $call= $_POST["call"];
         }
+
         if(empty($_POST["address"]))
         {
-            $addressErr= "Enter your address";
+            $addressErr= "*Enter your address";
             $hasErr= true;
         }
         else
         {
             $address= $_POST["address"];
         }
+
         if(empty($_POST["age"]))
         {
-            $ageErr= "Enter your age";
+            $ageErr= "*Enter your age";
         }
         else
         {
             $age= $_POST["age"];
         }
+        
         if(empty($_POST["gender"]))
         {
-            $genderErr= "Select your gender";
+            $genderErr= "*Select your gender";
             $hasErr= true;
         }
         else
         {
             $gender= $_POST["gender"];
         }
+
+        if(empty($_POST["weight"]))
+        {
+            $weightErr= "*Enter your body weight";
+            $hasErr= true;
+        }
+        else
+        {
+            $weight= $_POST["weight"];
+        }
+
+        if(empty($_POST["membertyp"]))
+        {
+            $membertypErr= "*Please select membership type";
+            $hasErr= true;
+        }
+        else
+        {
+            $membertyp= $_POST["membertyp"];
+        }
+
+        if(!$hasErr)
+        {
+            header("Location:member_list.php");
+        }
+
     }
 
 ?>
@@ -133,7 +168,8 @@
         <div class="sidebar">
             <h2 style="padding:10px 20px"><b>Menu</b></h2>
             <a href="form.php"><b>Add Member</b></a><br>
-            <a href="member_list"><b>Member lis</b>t</a><br>
+            <a href="member_list.php"><b>Member list</b></a><br>
+            <a href="payment.php"><b>Payment</b></a><br>
             <a href="logout.php"><b>Logout</b></a><br>
         </div>
 
@@ -170,36 +206,51 @@
                 </tr>
             </table>
 
-            <form action="" method= "POST" autocomplete="off">
+            <form action="../model/databaseconn.php" method= "POST" autocomplete="off">
                 <fieldset>
 
-                <legend>Personal Information</legend>
+                <legend style="text-align:center; color:blue"><b>Personal Information</b></legend>
 
                 <label for="name">Name</label>
-                <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>"><br><br>
-                <span style="color:red;" name="nameErr"><?php echo $nameErr; ?> </span><br>
+                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>"><br>
+                <span style="color:red;" name="nameErr"><?php echo $nameErr; ?> </span><br><br>
                  
                 <label for="email">Email</label>
-                <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>"><br><br>
-                <span style="color:red;" name="emailErr"> <?php echo $emailErr; ?> </span><br>
+                <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>"><br>
+                <span style="color:red;" name="emailErr"> <?php echo $emailErr; ?> </span><br><br>
                  
                 <label for="call">Phone</label>
-                <input type="text" name="call" value="<?php echo htmlspecialchars($call); ?>"><br><br>
-                <span style="color:red;" name="callErr"> <?php echo $callErr; ?></span><br>
+                <input type="text" name="call" value="<?php echo htmlspecialchars($call); ?>"><br>
+                <span style="color:red;" name="callErr"> <?php echo $callErr; ?></span><br><br>
 
                 <label for="address">Address</label>
-                <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>"><br><br>
-                <span style="color:red;" name="addressErr"> <?php echo $addressErr; ?></span><br>
+                <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>"><br>
+                <span style="color:red;" name="addressErr"> <?php echo $addressErr; ?></span><br><br>
                  
                 <label for="age">Age</label>
-                <input type="number" name="age" value="<?php echo htmlspecialchars($age); ?>"><br><br>
-                <span style="color:red;" name="ageErr"> <?php echo $ageErr; ?></span><br>
+                <input type="number" name="age" value="<?php echo htmlspecialchars($age); ?>"><br>
+                <span style="color:red;" name="ageErr"> <?php echo $ageErr; ?></span><br><br>
 
                 <label for="gender">Gender: </label>
                 <input type="radio" name="gender" value="male" <?php if ($gender === "male") echo "checked";?> >Male
                 <input type="radio" name="gender" value="female" <?php if ($gender === "female") echo "checked";?> >Female
-                <input type="radio" name="gender" value="other" <?php if ($gender === "other") echo "checked";?> >Other <br><br>
-                <span style="color:red;" name="genderErr"> <?php echo $genderErr; ?></span><br>
+                <input type="radio" name="gender" value="other" <?php if ($gender === "other") echo "checked";?> >Other <br>
+                <span style="color:red;" name="genderErr"> <?php echo $genderErr; ?></span><br><br>
+
+                <label for="membertyp">Membership type:</label>
+                <input type="checkbox" name="membertyp" value="Basic">Basic
+                <input type="checkbox" name="membertyp" value="Standerd">Standard
+                <input type="checkbox" name="membertyp" value="Premium">Premium <br>
+                <span style="color:red;" name="membertypErr"> <?php echo $membertypErr; ?></span><br>
+
+                <label for="weight">Body Weight(KG):</label>
+                <input type="text" name="weight" value="<?php echo htmlspecialchars($weight); ?>"><br>
+                <span style="color:red;" name="weightErr"> <?php echo $weightErr; ?></span> <br><br>
+
+
+                <label for="injury">Injury Description:</label>
+                <textarea name="injury" id="injury" cols="45" row="10"></textarea><br>
+
 
                 </fieldset>
                 <input type="submit" value="Submit">
