@@ -161,6 +161,18 @@
                 width: 100%;
                 max-width: 900px;
             }
+            button
+            {
+                width: 12%;
+                padding: 10px;
+                background-color: #22c55e;
+                color: white;
+                border: none;
+                font-size: 15px;
+                cursor: pointer;
+                border: 5px;
+                margin-top= 50px;
+            }
         </style>
     </head>
 
@@ -170,6 +182,7 @@
             <a href="form.php"><b>Add Member</b></a><br>
             <a href="member_list.php"><b>Member list</b></a><br>
             <a href="payment.php"><b>Payment</b></a><br>
+            <a href="addtrainer.php"><b>Add Trainer</b></a><br>
             <a href="logout.php"><b>Logout</b></a><br>
         </div>
 
@@ -211,23 +224,23 @@
 
                 <legend style="text-align:center; color:blue"><b>Personal Information</b></legend>
 
-                <label for="name">Name</label>
+                <label for="name">Name:</label>
                 <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>"><br>
                 <span style="color:red;" name="nameErr"><?php echo $nameErr; ?> </span><br><br>
                  
-                <label for="email">Email</label>
+                <label for="email">Email:</label>
                 <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>"><br>
                 <span style="color:red;" name="emailErr"> <?php echo $emailErr; ?> </span><br><br>
                  
-                <label for="call">Phone</label>
-                <input type="text" name="call" value="<?php echo htmlspecialchars($call); ?>"><br>
+                <label for="call">Phone:</label>
+                <input type="tel" name="call" value="<?php echo htmlspecialchars($call); ?>"><br>
                 <span style="color:red;" name="callErr"> <?php echo $callErr; ?></span><br><br>
 
-                <label for="address">Address</label>
+                <label for="address">Address:</label>
                 <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>"><br>
                 <span style="color:red;" name="addressErr"> <?php echo $addressErr; ?></span><br><br>
                  
-                <label for="age">Age</label>
+                <label for="age">Age:</label>
                 <input type="number" name="age" value="<?php echo htmlspecialchars($age); ?>"><br>
                 <span style="color:red;" name="ageErr"> <?php echo $ageErr; ?></span><br><br>
 
@@ -249,11 +262,11 @@
 
 
                 <label for="injury">Injury Description:</label>
-                <textarea name="injury" id="injury" cols="45" row="10"></textarea><br>
+                <textarea name="injury" id="injury" cols="35" row="20"></textarea><br>
 
 
                 </fieldset>
-                <input type="submit" value="Submit">
+                <button type="submit">Submit</button>
                 
             </form>
 

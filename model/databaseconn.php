@@ -35,7 +35,7 @@
         exit();
     } 
     else {
-        echo "❌ Failed to insert: " . mysqli_error($conn);
+        echo "Failed to insert: " . mysqli_error($conn);
     }
 
     $stmt->close();
